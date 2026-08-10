@@ -11,8 +11,11 @@ export default function NavBar() {
             </NavLink>
           </div>
           <div className="flex items-center space-x-4">
-            <NavLink to="/counter" className="text-slate-400 hover:text-white">
-              Counter
+            <NavLink
+              to="/calculator"
+              className="text-slate-400 hover:text-white"
+            >
+              Calculator
             </NavLink>
             <NavLink to="/todos" className="text-slate-400 hover:text-white">
               ToDo List
