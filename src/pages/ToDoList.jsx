@@ -18,7 +18,7 @@ export default function ToDoList() {
   useEffect(() => {
     async function fetchTodos() {
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/todos",
+        "https://jsonplaceholder.typicode.com/todos?_limit=10",
       );
       const data = await response.json();
       setTodos(data);
@@ -61,7 +61,9 @@ export default function ToDoList() {
           onChange={(e) => setText(e.target.value)}
           placeholder="Add a new todo"
         />
-        <BtnPill onClick={handleAddTodo}>Add</BtnPill>
+        <BtnPill onClick={handleAddTodo} disabled={text.trim() === ""}>
+          Add
+        </BtnPill>
         <div className="ml-4 flex gap-4">
           {view !== "card" && (
             <BtnPill onClick={() => setView("card")}>Card View</BtnPill>

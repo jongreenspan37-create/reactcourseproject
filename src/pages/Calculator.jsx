@@ -11,13 +11,11 @@ export default function Calculator() {
   function handleDigit(value) {
     setType("digit");
     setExpression((prev) => prev + value);
-
-    console.log(expression);
   }
 
   function handleOperator(value) {
     if (type === "operator") return;
-    console.log(value);
+
     setType("operator");
     setExpression((prev) => prev + value);
   }
