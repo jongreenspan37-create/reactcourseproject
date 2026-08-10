@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 
 export default function NavBar() {
   return (
-    <nav className="bg-slate-800 border-b border-slate-600">
+    <nav className="bg-blue-400 border-b border-slate-600">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -11,20 +11,14 @@ export default function NavBar() {
             </NavLink>
           </div>
           <div className="flex items-center space-x-4">
-            <NavLink
-              to="/calculator"
-              className="text-slate-400 hover:text-white"
-            >
+            <NavLink to="/calculator" className="text-white hover:font-bold">
               Calculator
             </NavLink>
-            <NavLink to="/todos" className="text-slate-400 hover:text-white">
+            <NavLink to="/todos" className="text-white hover:font-bold">
               ToDo List
             </NavLink>
 
-            <NavLink
-              to="/bankaccount"
-              className="text-slate-400 hover:text-white"
-            >
+            <NavLink to="/bankaccount" className="text-white hover:font-bold">
               Bank Account
             </NavLink>
           </div>

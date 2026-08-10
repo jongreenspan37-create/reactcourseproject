@@ -3,7 +3,9 @@ import { useState } from "react";
 import BankNav from "../components/BankNav.jsx";
 import Register from "./bankaccount/Register.jsx";
 import Login from "./bankaccount/Login";
+import AccountSummary from "./bankaccount/AccountSummary.jsx";
 import BtnPill from "../components/BtnPill.jsx";
+import { BankAccountProvider } from "../context/BankAccountContext";
 
 function BankHome() {
   const navigate = useNavigate();
@@ -34,17 +36,20 @@ function BankAccount() {
 
   return (
     <>
-      <BankNav />
-      {error !== null && (
-        <div className="m-4 p-4 text-red-500 text-center font-bold">
-          {error}
-        </div>
-      )}
-      <Routes>
-        <Route index element={<BankHome />} />
-        <Route path="register" element={<Register />} />
-        <Route path="login" element={<Login />} />
-      </Routes>
+      <BankAccountProvider>
+        <BankNav />
+        {error !== null && (
+          <div className="m-4 p-4 text-red-500 text-center font-bold">
+            {error}
+          </div>
+        )}
+        <Routes>
+          <Route index element={<BankHome />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="accounts" element={<AccountSummary />} />
+        </Routes>
+      </BankAccountProvider>
     </>
   );
 }

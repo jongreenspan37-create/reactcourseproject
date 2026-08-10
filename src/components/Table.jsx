@@ -23,9 +23,11 @@ export default function Table({ head, data, onAction }) {
                 {row[column.key]}
               </td>
             ))}
-            <td>
-              <BtnBlue onClick={() => onAction(row.id)}>Delete</BtnBlue>
-            </td>
+            {onAction && (
+              <td>
+                <BtnBlue onClick={() => onAction(row.id)}>Delete</BtnBlue>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

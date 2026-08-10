@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Account } from "../../models/Account";
+import { hashPassword } from "../../utils/hashPassword";
 import BtnBlue from "../../components/BtnBlue";
 import Field from "../../components/Field";
 
@@ -34,20 +36,33 @@ export default function Register() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError("");
 
-    const users = JSON.parse(localStorage.getItem("bankaccount_users") || "[]");
-    if (users.some((u) => u.email === form.email)) {
+    const accounts = JSON.parse(localStorage.getItem("bankAccounts") || "[]");
+    if (accounts.some((a) => a.email === form.email)) {
       setError("An account with this email already exists.");
       return;
     }
 
-    const newUser = { ...form, id: Date.now() };
+    const hashedPassword = await hashPassword(form.password);
+    const accountNo = Math.floor(Math.random() * 1000000000);
+
+    const newAccount = new Account(
+      form.title,
+      form.firstName,
+      form.lastName,
+      form.email,
+      hashedPassword,
+      accountNo,
+      0,
+      [],
+    );
+
     localStorage.setItem(
-      "bankaccount_users",
-      JSON.stringify([...users, newUser]),
+      "bankAccounts",
+      JSON.stringify([...accounts, newAccount]),
     );
 
     navigate("/bankaccount/login");
@@ -62,7 +77,7 @@ export default function Register() {
       <form
         onSubmit={handleSubmit}
         className="max-w-sm md:min-w-2xl rounded-lg
-                grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 p-4"
+                grid grid-cols-1 items-center md:grid-cols-[1fr_2fr] gap-4 p-4"
       >
         <Field
           label="Title"

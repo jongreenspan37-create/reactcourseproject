@@ -13,8 +13,6 @@ function Home() {
     { id: "5", src: "/S5.JPG", title: "Flower 5" },
   ];
 
-  console.log("photo state:", photo);
-
   function goBack() {
     setPhoto({ id: "all", src: null, title: null });
   }
