@@ -20,6 +20,13 @@ export default function NavBar() {
             <NavLink to="/todos" className="text-slate-400 hover:text-white">
               ToDo List
             </NavLink>
+
+            <NavLink
+              to="/bankaccount"
+              className="text-slate-400 hover:text-white"
+            >
+              Bank Account
+            </NavLink>
           </div>
         </div>
       </div>
